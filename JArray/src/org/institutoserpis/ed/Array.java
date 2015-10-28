@@ -40,12 +40,12 @@ public class Array {
 	}
 	
 	public static int indexOf(int[] v, int item) {
-		int index=0;
-		while (index < v.length && v[index]!=item)
-			index++;
-		if (index == v.length)
-			return -1;
-		return index;
+		for (int index =0; index < v.length; index++){
+			if (v[index] == item){
+				return index;
+			}
+		}
+		return -1;
 	}
 	
 
