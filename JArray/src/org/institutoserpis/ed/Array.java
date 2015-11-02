@@ -32,12 +32,17 @@ public class Array {
 	}
 	
 	public static int menor(int[] v) {
-		int menor = v[0];
-		for (int index = 1; index < v.length; index++)
-			if (v[index] < menor)
-				menor = v[index];
-		return menor;
-	}
+//		int menor = v[0];
+//		for (int index = 1; index < v.length; index++)
+//			if (v[index] < menor)
+//				menor = v[index];
+//		return menor;
+			int posMenor = 0;
+			for (int index = 1; index < v.length; index++)
+				if (v[index] < v[posMenor])
+					posMenor = index;
+			return v[posMenor];
+		}
 	
 	public static int indexOf(int[] v, int item) {
 		for (int index =0; index < v.length; index++){
@@ -47,6 +52,17 @@ public class Array {
 		}
 		return -1;
 	}
-	
+	public static void sort(int[] v){
+		for (int stepIndex = 0; stepIndex < v.length -1; stepIndex++){
+			int minIndex = stepIndex ;
+			for (int index = stepIndex + 1; index < v.length; index++){
+				if (v[index] < v[minIndex])
+					minIndex = index;
+			int aux = v[stepIndex];
+			v[stepIndex] = v[minIndex];
+			v[minIndex] = aux;
+			}
+		}
+	}
 
 }

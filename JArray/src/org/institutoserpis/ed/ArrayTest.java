@@ -23,4 +23,14 @@ public class ArrayTest {
 	public void indexOf_empty () {
 		assertEquals (-1, Array.indexOf(new int[]{}, 33));
 	}
+	@Test
+	public void sort (){
+		int[] v = {9,8,12,7};
+		Array.sort(v);
+		assertArrayEquals(new int[] {7, 8, 9, 12}, v);
+		
+		v = new int[] {9,7,12,7};
+		Array.sort(v);
+		assertArrayEquals(new int[] {7, 7, 9, 12}, v);
+	}
 }
