@@ -6,8 +6,12 @@ public partial class MainWindow
 	private global::Gtk.HBox hbox9;
 	private global::Gtk.Label label9;
 	private global::Gtk.Label labelnumero;
-	private global::Gtk.Button button9;
+	private global::Gtk.Button buttonnumero;
 	private global::Gtk.Button button12;
+	private global::Gtk.VBox vbox1;
+	private global::Gtk.HBox hbox1;
+	private global::Gtk.HBox hbox2;
+	private global::Gtk.HBox hbox3;
 
 	protected virtual void Build ()
 	{
@@ -43,7 +47,7 @@ public partial class MainWindow
 		// Container child hbox9.Gtk.Box+BoxChild
 		this.buttonnumero = new global::Gtk.Button ();
 		this.buttonnumero.CanFocus = true;
-		this.buttonnumero.Name = "button9";
+		this.buttonnumero.Name = "buttonnumero";
 		this.buttonnumero.UseStock = true;
 		this.buttonnumero.UseUnderline = true;
 		this.buttonnumero.Label = "gtk-go-forward";
@@ -67,6 +71,34 @@ public partial class MainWindow
 		w5.Position = 1;
 		w5.Expand = false;
 		w5.Fill = false;
+		// Container child vbox3.Gtk.Box+BoxChild
+		this.vbox1 = new global::Gtk.VBox ();
+		this.vbox1.Name = "vbox1";
+		this.vbox1.Spacing = 6;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.hbox1 = new global::Gtk.HBox ();
+		this.hbox1.Name = "hbox1";
+		this.hbox1.Spacing = 6;
+		this.vbox1.Add (this.hbox1);
+		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+		w6.Position = 0;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.hbox2 = new global::Gtk.HBox ();
+		this.hbox2.Name = "hbox2";
+		this.hbox2.Spacing = 6;
+		this.vbox1.Add (this.hbox2);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox2]));
+		w7.Position = 1;
+		// Container child vbox1.Gtk.Box+BoxChild
+		this.hbox3 = new global::Gtk.HBox ();
+		this.hbox3.Name = "hbox3";
+		this.hbox3.Spacing = 6;
+		this.vbox1.Add (this.hbox3);
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox3]));
+		w8.Position = 2;
+		this.vbox3.Add (this.vbox1);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.vbox1]));
+		w9.Position = 2;
 		this.Add (this.vbox3);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
