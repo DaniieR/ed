@@ -37,7 +37,7 @@ public partial class MainWindow: Gtk.Window
 			int indexAleatorio = random.Next (90);
 			Button button = buttons [indexAleatorio];
 			button.ModifyBg (StateType.Normal, GREEN_COLOR);
-			Process.Start ("espeak", "-v es " + indexAleatorio);
+			Process.Start ("espeak", "-v es " + (indexAleatorio+1));
 		};
 	}
 
