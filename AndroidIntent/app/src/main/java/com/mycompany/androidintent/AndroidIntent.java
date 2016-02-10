@@ -53,36 +53,36 @@ public class AndroidIntent extends AppCompatActivity {
 
     public void sumar(View v) {
 //convertimos a número los valores introducidos y operamos
-        int n1 = Integer.parseInt(oper1.getText().toString());
-        int n2 = Integer.parseInt(oper2.getText().toString());
-        int sum = n1 + n2;
+        double n1 = Double.parseDouble(oper1.getText().toString());
+        double n2 = Double.parseDouble(oper2.getText().toString());
+        double sum = n1 + n2;
         mostrar(sum);
     }
 
     public void restar(View v) {
 //convertimos a número los valores introducidos y operamos
-        int n1 = Integer.parseInt(oper1.getText().toString());
-        int n2 = Integer.parseInt(oper2.getText().toString());
-        int res = n1 - n2;
+        double n1 = Double.parseDouble(oper1.getText().toString());
+        double n2 = Double.parseDouble(oper2.getText().toString());
+        double res = n1 - n2;
         mostrar(res);
     }
 
     public void multiplicar(View v) {
 //convertimos a número los valores introducidos y operamos
-        int n1 = Integer.parseInt(oper1.getText().toString());
-        int n2 = Integer.parseInt(oper2.getText().toString());
-        int mul = n1 * n2;
+        double n1 = Double.parseDouble(oper1.getText().toString());
+        double n2 = Double.parseDouble(oper2.getText().toString());
+        double mul = n1 * n2;
         mostrar(mul);
     }
 
     public void dividir(View v) {
 //convertimos a número los valores introducidos y operamos
-        int n1 = Integer.parseInt(oper1.getText().toString());
-        int n2 = Integer.parseInt(oper2.getText().toString());
-        int div = n1 / n2;
+        double n1 = Double.parseDouble(oper1.getText().toString());
+        double n2 = Double.parseDouble(oper2.getText().toString());
+        double div = n1 / n2;
         mostrar(div);
     }
-    private void mostrar(int res) {
+    private void mostrar(double res) {
 /*mostramos resultado en un Toast
         Object Resultado;
         Toast.makeText(this, "Resultado: " + res, Toast.LENGTH_LONG).show();*/
