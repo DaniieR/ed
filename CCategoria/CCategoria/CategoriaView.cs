@@ -14,16 +14,10 @@ namespace CCategoria
 				dbCommand.CommandText = "insert into categoria (nombre) values (@nombre)";
 				string nombre = entryNombre.Text;
 
-				dbCommandAddParameter(dbCommand,"nombre",nombre);
+				DbHelper.dbCommandAddParameter(dbCommand,"nombre",nombre);
 
 				dbCommand.ExecuteNonQuery();
 			};
 		}
-		private void dbCommandAddParameter(IDbCommand dbCommand, string parameterName, object value){
-			IDbDataParameter dbDataParameter = dbCommand.CreateParameter();
-			dbDataParameter.ParameterName = parameterName ;
-			dbDataParameter.Value = value ;
-			dbCommand.Parameters.Add(dbDataParameter);
 	}
-}
 }

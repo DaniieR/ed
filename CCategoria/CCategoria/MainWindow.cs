@@ -21,46 +21,76 @@ public partial class MainWindow: Gtk.Window
 		App.Instance.DbConnection = new MySqlConnection ("Database=dbprueba;user=root;password=sistemas");
 		App.Instance.DbConnection.Open ();
 
-		//operaciones (insert, select...) 
+		newAction.Activated += delegate {
+			CCategoria.CategoriaView categoriaView = new CCategoria.CategoriaView(); 
+		};
+		fillListStore (liststore);
+		deleteAction.Activated += delegate {
+			//Confirmar si quiere eliminar o no
+			//MessageDialog messageDialog = new MessageDialog(
+			//	this,
+			//	DialogFlags.Modal,
+			//	MessageType.Question,
+			//	ButtonsType.YesNo,
+			//	"¿Quieres eliminar el registro?"
+			//	);
+			//messageDialog.Title = Title;
+			//ResponseType response = (ResponseType)messageDialog.Run();
+			//messageDialog.Destroy();
+			//if (response != ResponseType.Yes)
+			//	return;
+			if (!WindowHelper.Confirm(this, "¿Quieres eliminar el registro?"))
+				return;
 
-		//IDbCommand insertDbCommand = dbConnection.CreateCommand ();
-		//insertDbCommand.CommandText = "insert into categoria (nombre) values ('categoria 2')";
-		//insertDbCommand.ExecuteNonQuery ();
+			Console.WriteLine ("deleteAction Activated");
+			TreeIter treeIter;
+			treeView.Selection.GetSelected(out treeIter);
+			object id=liststore.GetValue(treeIter, 0);
+			Console.WriteLine ("deleteAction Activated id = {0}", id);
+			IDbCommand deleteDbCommand = App.Instance.DbConnection.CreateCommand();
+			//TODO usar dbParameters para el id
+			deleteDbCommand.CommandText = "delete from categoria where id = @id";
+			DbHelper.dbCommandAddParameter(deleteDbCommand, "id", id);
+			deleteDbCommand.ExecuteNonQuery();
+		};
 
-		//Las operaciones que toquen
+		refreshAction.Activated += delegate {
 
+			fillListStore (liststore);
+
+		};
+
+		treeView.Selection.Changed += delegate {
+			Console.WriteLine ("TreeView Selection Changed CountSelectedRows()={0}",
+			treeView.Selection.CountSelectedRows());
+			updateActions();
+	};
+		//dbConnection.Close ();
+	}
+
+	private void fillListStore(ListStore liststore){
+
+		liststore.Clear();
 		IDbCommand dbcommand = App.Instance.DbConnection.CreateCommand ();
-		dbcommand.CommandText = "select * from categoria";
+		dbcommand.CommandText = "select * from categoria order by id";
 		IDataReader dataReader = dbcommand.ExecuteReader ();
 		while (dataReader.Read()) {
 			//Console.WriteLine ("id={0} nombre={1}", dataReader ["id"], dataReader ["nombre"]);
 			liststore.AppendValues (dataReader ["id"], dataReader ["nombre"]);
 		}
 		dataReader.Close ();
-		newAction.Activated += delegate {
-			CCategoria.CategoriaView categoriaView = new CCategoria.CategoriaView(); 
-		};
 
-		deleteAction.Activated += delegate {
-			Console.WriteLine ("deleteAction Activated");
-			TreeIter treeIter;
-			treeView.Selection.GetSelected(out treeIter);
-			object id=liststore.GetValue(treeIter, 0);
-			Console.WriteLine ("deleteAction Activated id = {0}", id);
-		};
-
-		treeView.Selection.Changed += delegate {
-			Console.WriteLine ("TreeView Selection Changed CountSelectedRows()={0}",
-			treeView.Selection.CountSelectedRows());
-			refreshAction();
-	};
-		//dbConnection.Close ();
 	}
 
-	private void refreshAction(){
+	private void updateActions(){
 		deleteAction.Sensitive = treeView.Selection.CountSelectedRows() > 0;
 	}
-	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
+
+	private void delete(){
+
+	}
+	
+		protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
 		a.RetVal = true;
