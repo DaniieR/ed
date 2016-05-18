@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{11F913EF-346E-4E1D-A8B2-1F3C2758D0FA}</ProjectGuid>
+    <ProjectGuid>{CC97A81A-7EED-4A6F-AA71-1C5D02C17995}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>CCategoria</RootNamespace>
     <AssemblyName>CCategoria</AssemblyName>
@@ -16,7 +16,6 @@
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
@@ -25,7 +24,6 @@
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <PlatformTarget>x86</PlatformTarget>
@@ -72,9 +70,13 @@
     <Compile Include="gtk-gui\generated.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="gtk-gui\MainWindow.cs" />
+    <Compile Include="gtk-gui\CCategoria.CategoriaView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CategoriaView.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="DbHelper.cs" />
+    <Compile Include="WindowHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
