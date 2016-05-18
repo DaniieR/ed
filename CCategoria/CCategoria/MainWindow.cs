@@ -25,6 +25,7 @@ public partial class MainWindow: Gtk.Window
 			CCategoria.CategoriaView categoriaView = new CCategoria.CategoriaView(); 
 		};
 		fillListStore (liststore);
+		deleteAction.Sensitive = false;
 		deleteAction.Activated += delegate {
 			//Confirmar si quiere eliminar o no
 			//MessageDialog messageDialog = new MessageDialog(
@@ -94,6 +95,7 @@ public partial class MainWindow: Gtk.Window
 	{
 		Application.Quit ();
 		a.RetVal = true;
+
 	}
 
 
