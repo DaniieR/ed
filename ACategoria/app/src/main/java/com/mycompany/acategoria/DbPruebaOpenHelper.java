@@ -1,10 +1,12 @@
 package com.mycompany.acategoria;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +14,7 @@ import java.util.List;
  */
 public class DbPruebaOpenHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "dbprueba.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     private static Context context;
     public static void init(Context context){
@@ -31,8 +33,8 @@ public class DbPruebaOpenHelper extends SQLiteOpenHelper {
         public static final String COLUMN_NOMBRE = "nombre";
     }
 
-    private static final String CREATE_TABLE_CATEGORIA ="Create table " + TablaCategoria.NAME + "("
-            + TablaCategoria._ID+ "integer primary key, "+ TablaCategoria.COLUMN_NOMBRE + "Text" + ");";
+    private static final String CREATE_TABLE_CATEGORIA ="Create table " + TablaCategoria.NAME + " ("
+            + TablaCategoria._ID + " integer primary key, "+ TablaCategoria.COLUMN_NOMBRE + " Text" + ");";
     private static final String DROP_TABLE_CATEGORIA = "drop table if exists "+ TablaCategoria.NAME;
 
     public DbPruebaOpenHelper(Context context) {
@@ -56,7 +58,25 @@ public class DbPruebaOpenHelper extends SQLiteOpenHelper {
 
     public List<Categoria> getCategorias(){
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        //TODO sqLiteDatabase.query();
-        return null;
+        String[] columns = new String[]{
+                TablaCategoria._ID,
+                TablaCategoria.COLUMN_NOMBRE,
+        };
+        Cursor cursor = sqLiteDatabase.query(
+                TablaCategoria.NAME,
+                columns,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        List<Categoria> categorias = new ArrayList<>();
+
+        while (cursor.moveToNext())
+            categorias.add(new Categoria(cursor.getLong(0),cursor.getString(1)));
+        cursor.close();
+
+        return categorias;
     }
 }
